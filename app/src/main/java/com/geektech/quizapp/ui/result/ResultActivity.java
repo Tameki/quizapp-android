@@ -16,6 +16,7 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //TODO: Result screen design
         setContentView(R.layout.activity_result);
     }
 }

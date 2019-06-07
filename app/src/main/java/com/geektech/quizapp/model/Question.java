@@ -7,9 +7,9 @@ import java.util.List;
 public class Question {
     private String category;
 
-    private String type;
+    private TypeEnum type;
 
-    private String difficulty;
+    private DifficultyEnum difficulty;
 
     private String question;
 
@@ -19,7 +19,9 @@ public class Question {
     @SerializedName("incorrect_answers")
     private List<String> incorrectAnswers;
 
-    public Question(String category, String type, String difficulty, String question, String correctAnswer, List<String> incorrectAnswers) {
+    private String selectedAnswer;
+
+    public Question(String category, TypeEnum type, DifficultyEnum difficulty, String question, String correctAnswer, List<String> incorrectAnswers) {
         this.category = category;
         this.type = type;
         this.difficulty = difficulty;
@@ -36,19 +38,19 @@ public class Question {
         this.category = category;
     }
 
-    public String getType() {
+    public TypeEnum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(TypeEnum type) {
         this.type = type;
     }
 
-    public String getDifficulty() {
+    public DifficultyEnum getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(DifficultyEnum difficulty) {
         this.difficulty = difficulty;
     }
 

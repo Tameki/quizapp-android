@@ -2,7 +2,6 @@ package com.geektech.quizapp.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,13 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 
 import com.geektech.quizapp.App;
 import com.geektech.quizapp.R;
 import com.geektech.quizapp.data.IQuizRepository;
 import com.geektech.quizapp.model.Question;
-import com.geektech.quizapp.ui.PageChangeListener;
+import com.geektech.quizapp.ui.widgets.PageChangeListener;
 import com.geektech.quizapp.ui.history.HistoryFragment;
 
 import java.util.List;
@@ -39,6 +37,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
+        App.quizRepository.getQuestions(10, new IQuizRepository.QuestionsCallback() {
+            @Override
+            public void onSuccess(List<Question> questions) {
+                for (Question item : questions) {
+                    Log.d("ololo", item.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Log.d("ololo", message);
+            }
+        });
     }
 
     private void init() {
@@ -87,8 +99,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int i) {
+            Fragment fragment;
+            switch (i) {
+                case 0: fragment = MainFragment.newInstance();
+                    break;
+                default: fragment = HistoryFragment.newInstance();
+            }
             //TODO: Return fragments
-            return HistoryFragment.newInstance();
+            return fragment;
         }
 
         @Override

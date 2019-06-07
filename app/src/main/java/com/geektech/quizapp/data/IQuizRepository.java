@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IQuizRepository {
 
+    //TODO: Add difficulty input
     void getQuestions(int amount, QuestionsCallback callback);
 
     interface QuestionsCallback {
