@@ -17,14 +17,62 @@
         android:src="@drawable/ic_back_black"/>
 
     <TextView
-        android:theme="@style/AppTheme.TitleText"
-        android:id="@+id/main_title"
+        android:theme="@style/TitleText"
+        android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/quiz_back"
-        app:layout_constraintBottom_toBottomOf="@id/quiz_back"
-        android:text="Category name"/>
+        app:layout_constraintBottom_toBottomOf="@id/quiz_back" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:id="@+id/quiz_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="@dimen/page_big_margin"
+        android:layout_marginRight="@dimen/page_big_margin"
+        android:layout_marginTop="16dp"
+        android:max="100"
+        android:progress="50"/>
+
+    <TextView
+        android:id="@+id/quiz_progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_progress"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@drawable/color_question_option_text"
+        android:text="5/10"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/quiz_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_progress_text"
+        app:layout_constraintBottom_toTopOf="@+id/quiz_skip" />
+
+    <TextView
+        android:id="@+id/quiz_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="40dp"
+        android:background="@drawable/bg_round_red"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
+        android:text="Skip"/>
 
 </android.support.constraint.ConstraintLayout>
