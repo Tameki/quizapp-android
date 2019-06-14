@@ -78,6 +78,14 @@ public class Question {
         this.incorrectAnswers = incorrectAnswers;
     }
 
+    public String getSelectedAnswer() {
+        return selectedAnswer;
+    }
+
+    public void setSelectedAnswer(String selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
+    }
+
     @Override
     public String toString() {
         return category + " " + type + " " + difficulty;

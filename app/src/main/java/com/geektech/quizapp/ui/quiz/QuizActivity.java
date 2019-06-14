@@ -7,13 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.geektech.quizapp.R;
 import com.geektech.quizapp.ui.quiz.recycler.QuizAdapter;
+import com.geektech.quizapp.ui.quiz.recycler.QuizViewHolder;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity
+    implements QuizViewHolder.QuizViewHolderListener {
 
     private QuizViewModel mViewModel;
     private RecyclerView mRecycler;
@@ -55,6 +58,7 @@ public class QuizActivity extends AppCompatActivity {
 
         mViewModel.questions.observe(this, questions -> {
             if (questions != null) {
+                Log.d("ololo", "Questions update");
                 mAdapter.setQuestions(questions);
                 mProgress.setMax(questions.size());
             }
@@ -74,7 +78,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void initRecycler() {
-        mAdapter = new QuizAdapter();
+        mAdapter = new QuizAdapter(this);
         mRecycler = findViewById(R.id.quiz_recycler);
         mRecycler.setAdapter(mAdapter);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(
@@ -98,5 +102,10 @@ public class QuizActivity extends AppCompatActivity {
 
         findViewById(R.id.quiz_skip).setOnClickListener(v -> mViewModel.onNextClick());
         findViewById(R.id.quiz_back).setOnClickListener(v -> mViewModel.onBackPressed());
+    }
+
+    @Override
+    public void onAnswerSelected(int position, String answer) {
+        mViewModel.onAnswerSelected(position, answer);
     }
 }

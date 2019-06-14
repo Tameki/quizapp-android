@@ -26,9 +26,6 @@ class QuizViewModel extends ViewModel {
                 loading.setValue(false);
                 QuizViewModel.this.questions.setValue(questions);
                 currentQuestionPosition.setValue(0);
-                for (Question question : questions) {
-                    Log.d("ololo", question.toString());
-                }
             }
 
             @Override
@@ -55,6 +52,11 @@ class QuizViewModel extends ViewModel {
         } else {
             //TODO: Close quiz screen
         }
+    }
+
+    void onAnswerSelected(int position, String answer) {
+        Log.d("ololo", "On answer selected " + position + " " + answer);
+//        questions.getValue().get(position).setSelectedAnswer(answer);
     }
 
     String getTitle() {
