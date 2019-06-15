@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
+import com.geektech.core.SingleLiveEvent;
 import com.geektech.quizapp.App;
 import com.geektech.quizapp.data.IQuizRepository;
 import com.geektech.quizapp.model.Question;
@@ -15,6 +16,8 @@ class QuizViewModel extends ViewModel {
     MutableLiveData<List<Question>> questions = new MutableLiveData<>();
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
     MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    SingleLiveEvent<Integer> openResultEvent = new SingleLiveEvent<>();
+    SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
 
     //TODO: Add resultEvent and closeEvent (SingleLiveEvent)
 
@@ -50,7 +53,7 @@ class QuizViewModel extends ViewModel {
         if (currentPosition >= 0) {
             currentQuestionPosition.setValue(currentPosition);
         } else {
-            //TODO: Close quiz screen
+            finishEvent.call();
         }
     }
 

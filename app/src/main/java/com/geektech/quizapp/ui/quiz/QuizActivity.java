@@ -74,6 +74,10 @@ public class QuizActivity extends AppCompatActivity
             }
         });
 
+        mViewModel.finishEvent.observe(this, aVoid -> {
+            finish();
+        });
+
         mViewModel.loadQuestions(getIntent().getIntExtra(EXTRA_AMOUNT, 10));
     }
 
