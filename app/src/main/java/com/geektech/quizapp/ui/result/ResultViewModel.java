@@ -1,6 +1,6 @@
 package com.geektech.quizapp.ui.result;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 public class ResultViewModel extends ViewModel {
 }

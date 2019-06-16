@@ -1,7 +1,7 @@
 package com.geektech.quizapp.ui.quiz.recycler;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
@@ -9,9 +9,6 @@ import android.widget.TextView;
 import com.geektech.quizapp.R;
 import com.geektech.quizapp.model.Question;
 import com.geektech.quizapp.model.TypeEnum;
-
-import java.util.Collections;
-import java.util.Random;
 
 public class QuizViewHolder extends RecyclerView.ViewHolder
     implements View.OnClickListener {

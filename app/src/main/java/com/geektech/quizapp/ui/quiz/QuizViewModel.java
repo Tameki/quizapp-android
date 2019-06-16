@@ -1,14 +1,16 @@
 package com.geektech.quizapp.ui.quiz;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import android.util.Log;
 
 import com.geektech.core.SingleLiveEvent;
 import com.geektech.quizapp.App;
 import com.geektech.quizapp.data.IQuizRepository;
 import com.geektech.quizapp.model.Question;
+import com.geektech.quizapp.model.QuizResult;
 
+import java.util.Date;
 import java.util.List;
 
 class QuizViewModel extends ViewModel {
@@ -20,6 +22,31 @@ class QuizViewModel extends ViewModel {
     SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
 
     //TODO: Add resultEvent and closeEvent (SingleLiveEvent)
+
+    private int getCorrectAnswersAmount() {
+        //TODO: Calculate correct answers
+        return 1;
+    }
+
+    private void finishQuiz() {
+        QuizResult result = new QuizResult(
+                0,
+                questions.getValue(),
+                getCorrectAnswersAmount(),
+                new Date()
+        );
+        int id = App.historyStorage.saveQuizResult(result);
+
+
+        Log.d("ololo", "Added id = " + id);
+
+        QuizResult addedQuiz = App.historyStorage.getQuizResult(id);
+        Log.d("ololo", "" + addedQuiz.getCorrectAnswers() + " " + addedQuiz.getCreatedAt());
+
+        finishEvent.call();
+
+        //TODO: Save result and open result activity
+    }
 
     void loadQuestions(int amount) {
         loading.setValue(true);
@@ -42,7 +69,7 @@ class QuizViewModel extends ViewModel {
     void onNextClick() {
         int currentPosition = currentQuestionPosition.getValue() + 1;
         if (currentPosition == questions.getValue().size()) {
-            //TODO: Open result screen
+            finishQuiz();
         } else {
             currentQuestionPosition.setValue(currentPosition);
         }
