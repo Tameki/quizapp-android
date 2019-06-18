@@ -17,6 +17,11 @@
         <item name="android:padding">24dp</item>
     </style>
 
+    <style name="GreyAccent">
+        <item name="colorAccent">@color/light_grey</item>
+        <item name="colorPrimary">@color/light_grey</item>
+    </style>
+
     <style name="AppTheme.LaunchScreen">
         <!--TODO-->
     </style>
